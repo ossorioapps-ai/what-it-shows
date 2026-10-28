@@ -1,0 +1,73 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: ossorioapps-ai
+status: open
+reviewed: 2026-10-28
+signature: v1.eyJzdWIiOiI3MzgiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdCI6MTc5MzIyNzczNSwiZXhwIjoxNzkzMzE0MTM1fQ.34igp2Oc7VbkWpES_AwbKjKtYqylGZj2izRftHwvOk0
+---
+
+<script>
+  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+
+  const issues = {
+    parser: 'https://github.com/ossorioapps-ai/what-it-shows/issues/1',
+    hint: 'https://github.com/ossorioapps-ai/what-it-shows/issues/2',
+    'one-day': 'https://github.com/ossorioapps-ai/what-it-shows/issues/3',
+  };
+</script>
+
+[#4471](/kb/incidents/4471) was merged as one issue with one fix queued. Read report by report, it
+holds three problems. The queued parser fix closes only the first one.
+
+<Callout kind="warn">
+Not one issue. Each problem below has its own ticket and its own fix. Do not close the other two
+when the parser fix ships.
+</Callout>
+
+## The split
+
+<ProblemTable ticket={4471} {issues} />
+
+Counts are unique reports. The export lists some reports twice (overlapping pages), so the table
+counts by id, the same way the kb's other tables do.
+
+## 1 · `parser`: the shared parser reads dates month first
+
+Every tenant on #4471 writes the day first. The shared parser reads every date month first, so
+`07/04` (7 April) becomes 4 July. The bodies show a clean swap: the day and the month trade places.
+These come in by app, email and the booking-v2 form, from every tenant.
+
+**Fix:** parse with the tenant's locale, not a fixed month-first order.
+
+## 2 · `hint`: booking-v3 tells people to type month first
+
+booking-v3 prints `MM/DD/YYYY` under its date field. People follow the hint and type the month first,
+and the form then reads the date the tenant's way, day first. The swap looks the same as `parser`,
+but the parser is not involved. Only reports sent **through the form** of a **booking-v3** tenant
+are this problem; the same tenants' app and email reports are `parser`.
+
+**Fix:** print the hint from the tenant's locale (`DD/MM/YYYY` for every tenant here). The parser fix
+does not change this.
+
+## 3 · `one-day`: dates move by one day, not by a swap
+
+These reports move the date by one day or depend on where the reader is: "Tuesday 12 May" in the
+invite, Monday 11 May in the calendar; "Client in Lisbon got Tuesday. Client in Toronto got Monday";
+"every booking in June is one day off". No month/day swap explains a one-day move. The desk had
+already read them this way ([desk notes](/kb/incidents/4471): "read as a one-day move") but filed
+them under `parser` by tenant.
+
+**Fix:** look at how the invite turns a booking time into a calendar date across time zones
+(midnight and all-day bookings, daylight saving). The parser fix does not change this.
+
+## Why it stayed one ticket
+
+- [Decision 0001](/kb/decisions/0001-dedupe-by-subject) merges on subject. Subjects here say "wrong
+  day" for all three problems, so the subject cannot split them.
+- Intake's `hint` tag guesses from the browser. It disagrees with the tenant and form often, in both
+  directions. Sort by tenant, form and body, not by the tag.
+
+<RenderStamp {signature} />
