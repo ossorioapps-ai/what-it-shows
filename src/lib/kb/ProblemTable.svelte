@@ -32,7 +32,7 @@
     {#each split.groups as g (g.problem)}
       <tr>
         <td><code>{g.problem}</code></td>
-        <td>{g.reports}</td>
+        <td>{g.reports}{#if g.alsoIn}<span class="note"> (also in <code>{g.alsoIn}</code>)</span>{/if}</td>
         <td>{g.tenants.length}</td>
         <td class="ch">{channels(g.channels)}</td>
         <td>{g.firstSeen} → {g.lastSeen}</td>
@@ -43,6 +43,10 @@
     {/each}
   </tbody>
 </table>
+
+{#each split.groups.filter((g) => g.alsoIn) as g (g.problem)}
+  <p class="note">{g.reports} <code>{g.problem}</code> reports are counted under <code>{g.alsoIn}</code> too, where the desk files them by tenant.</p>
+{/each}
 
 <style>
   .sum { font-size: 1.1rem; }

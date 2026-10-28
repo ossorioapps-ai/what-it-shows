@@ -2,7 +2,7 @@
 
 The support desk's kb export, with #4471 split into the problems it really holds.
 
-- Tickets: [#1 parser (374)](https://github.com/ossorioapps-ai/what-it-shows/issues/1) · [#2 hint (33)](https://github.com/ossorioapps-ai/what-it-shows/issues/2) · [#3 one-day (5)](https://github.com/ossorioapps-ai/what-it-shows/issues/3) = 412 unique reports
+- Tickets: [#1 parser (379)](https://github.com/ossorioapps-ai/what-it-shows/issues/1) · [#2 hint (33)](https://github.com/ossorioapps-ai/what-it-shows/issues/2) · [#3 one-day (5)](https://github.com/ossorioapps-ai/what-it-shows/issues/3) (one-day also counted under parser, as the desk files it) · 412 unique reports
 - Page source: [`src/routes/kb/incidents/4471/problems/+page.svx`](src/routes/kb/incidents/4471/problems/+page.svx), table from [`src/lib/kb/problems.ts`](src/lib/kb/problems.ts) and [`ProblemTable.svelte`](src/lib/kb/ProblemTable.svelte)
 - The page as the desk sees it: [`rendered/kb/incidents/4471/problems.html`](rendered/kb/incidents/4471/problems.html) (static build of this kb with SvelteKit + mdsvex)
 

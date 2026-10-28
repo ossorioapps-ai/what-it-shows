@@ -31,8 +31,9 @@ when the parser fix ships.
 
 <ProblemTable ticket={4471} {issues} />
 
-Counts are unique reports. The export lists some reports twice (overlapping pages), so the table
-counts by id, the same way the kb's other tables do.
+Counts are the desk's own view: unique reports by id, filed by tenant, the same way
+[#4471's cause table](/kb/incidents/4471) counts them. The one-day moves keep their place under
+`parser` and get their own row and ticket, because the parser fix will not close them.
 
 ## 1 · `parser`: the shared parser reads dates month first
 
