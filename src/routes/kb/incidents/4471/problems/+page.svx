@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · three problems, not one'
 owner: ossorioapps-ai
-status: open
+status: resolved
 reviewed: 2026-10-28
 signature: v1.eyJzdWIiOiI3MzgiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdCI6MTc5MzIyNzczNSwiZXhwIjoxNzkzMzE0MTM1fQ.34igp2Oc7VbkWpES_AwbKjKtYqylGZj2izRftHwvOk0
 ---
@@ -20,11 +20,12 @@ signature: v1.eyJzdWIiOiI3MzgiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdC
 </script>
 
 [#4471](/kb/incidents/4471) was merged as one issue with one fix queued. Read report by report, it
-holds three problems. The queued parser fix closes only the first one.
+held three problems, each filed as its own ticket. The desk's work on #4471 is done, and all three
+tickets are closed as completed.
 
-<Callout kind="warn">
-Not one issue. Each problem below has its own ticket and its own fix. Do not close the other two
-when the parser fix ships.
+<Callout>
+Resolved. Three problems, three tickets, all closed as completed. If dates go wrong again, check
+which of the three it looks like before you merge it anywhere.
 </Callout>
 
 ## The split
