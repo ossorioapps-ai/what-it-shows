@@ -24,8 +24,8 @@ held three problems, each filed as its own ticket. The desk's work on #4471 is d
 tickets are closed as completed.
 
 <Callout>
-Resolved. Three problems, three tickets, all closed as completed. If dates go wrong again, check
-which of the three it looks like before you merge it anywhere.
+Resolved. Three problems, three tickets, closed by the change that resolved this page. If dates go
+wrong again, check which of the three it looks like before you merge it anywhere.
 </Callout>
 
 ## The split
